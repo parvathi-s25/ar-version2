@@ -1,0 +1,135 @@
+{
+  "storyId": "sample-two-character-story",
+  "title": "The Meeting — Two Characters Demo",
+  "version": 2,
+  "durationMs": 18000,
+  "loop": true,
+  "characters": {
+    "hero": {
+      "displayName": "Hero",
+      "assetUrl": "/assets/characters/sample-character.gltf",
+      "scale": 0.08,
+      "footprintRadiusMeters": 0.025,
+      "groundOffsetMeters": 0,
+      "targetHeightMeters": 0.12,
+      "initialLocalPosition": { "x": -0.09, "y": 0, "z": 0.10 },
+      "initialRotationYDeg": 90
+    },
+    "companion": {
+      "displayName": "Companion",
+      "assetUrl": "/assets/characters/sample-character.gltf",
+      "scale": 0.07,
+      "footprintRadiusMeters": 0.022,
+      "groundOffsetMeters": 0,
+      "targetHeightMeters": 0.10,
+      "initialLocalPosition": { "x": 0.09, "y": 0, "z": -0.10 },
+      "initialRotationYDeg": 270
+    }
+  },
+  "timeline": [
+    {
+      "id": "hero-walk-right",
+      "characterId": "hero",
+      "type": "move",
+      "startMs": 0,
+      "endMs": 4000,
+      "from": { "x": -0.09, "y": 0, "z": 0.10 },
+      "to":   { "x":  0.02, "y": 0, "z": 0.0 },
+      "rotationYDeg": 90,
+      "animationClip": "Walk"
+    },
+    {
+      "id": "companion-walk-left",
+      "characterId": "companion",
+      "type": "move",
+      "startMs": 0,
+      "endMs": 4000,
+      "from": { "x": 0.09, "y": 0, "z": -0.10 },
+      "to":   { "x": -0.02, "y": 0, "z":  0.0 },
+      "rotationYDeg": 270,
+      "animationClip": "Walk"
+    },
+    {
+      "id": "hero-face-companion",
+      "characterId": "hero",
+      "type": "rotate",
+      "startMs": 4000,
+      "endMs": 5200,
+      "fromRotationYDeg": 90,
+      "toRotationYDeg": 270,
+      "animationClip": "Idle"
+    },
+    {
+      "id": "companion-face-hero",
+      "characterId": "companion",
+      "type": "rotate",
+      "startMs": 4000,
+      "endMs": 5200,
+      "fromRotationYDeg": 270,
+      "toRotationYDeg": 90,
+      "animationClip": "Idle"
+    },
+    {
+      "id": "hero-idle-facing",
+      "characterId": "hero",
+      "type": "pose",
+      "startMs": 5200,
+      "endMs": 10000,
+      "position": { "x": 0.02, "y": 0, "z": 0.0 },
+      "rotationYDeg": 270,
+      "animationClip": "Idle"
+    },
+    {
+      "id": "companion-idle-facing",
+      "characterId": "companion",
+      "type": "pose",
+      "startMs": 5200,
+      "endMs": 10000,
+      "position": { "x": -0.02, "y": 0, "z": 0.0 },
+      "rotationYDeg": 90,
+      "animationClip": "Idle"
+    },
+    {
+      "id": "hero-walk-away",
+      "characterId": "hero",
+      "type": "move",
+      "startMs": 10000,
+      "endMs": 14000,
+      "from": { "x":  0.02, "y": 0, "z": 0.0 },
+      "to":   { "x":  0.09, "y": 0, "z": 0.10 },
+      "rotationYDeg": 90,
+      "animationClip": "Walk"
+    },
+    {
+      "id": "companion-walk-away",
+      "characterId": "companion",
+      "type": "move",
+      "startMs": 10000,
+      "endMs": 14000,
+      "from": { "x": -0.02, "y": 0, "z":  0.0 },
+      "to":   { "x": -0.09, "y": 0, "z": -0.10 },
+      "rotationYDeg": 270,
+      "animationClip": "Walk"
+    },
+    {
+      "id": "hero-idle-end",
+      "characterId": "hero",
+      "type": "pose",
+      "startMs": 14000,
+      "endMs": 18000,
+      "position": { "x": 0.09, "y": 0, "z": 0.10 },
+      "rotationYDeg": 90,
+      "animationClip": "Idle"
+    },
+    {
+      "id": "companion-idle-end",
+      "characterId": "companion",
+      "type": "pose",
+      "startMs": 14000,
+      "endMs": 18000,
+      "position": { "x": -0.09, "y": 0, "z": -0.10 },
+      "rotationYDeg": 270,
+      "animationClip": "Idle"
+    }
+  ]
+}

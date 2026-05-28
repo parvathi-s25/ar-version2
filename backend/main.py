@@ -47,7 +47,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS: allow the Vite dev server and any Vercel/Netlify deploy.
+# CORS: allow the Vite dev server and the Vercel deploy.
 # Tighten allowed_origins before production.
 app.add_middleware(
     CORSMiddleware,
@@ -55,17 +55,16 @@ app.add_middleware(
         "http://localhost:5173",
         "http://localhost:4173",
         "http://127.0.0.1:5173",
-        "https://*.vercel.app",
-        "https://*.netlify.app",
+        "https://ar-version2.vercel.app",
     ],
-    allow_origin_regex=r"https://.*\.vercel\.app|https://.*\.netlify\.app",
+    allow_origin_regex=r"https://ar-version2\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Path to the sample story shipped with the frontend.
-_SAMPLE_STORY_PATH = pathlib.Path(__file__).parent.parent / "public" / "story" / "sample-story.json"
+_SAMPLE_STORY_PATH = pathlib.Path(__file__).parent / "sample-story.json"
 
 
 # ─── Routes ───────────────────────────────────────────────────────────────────
