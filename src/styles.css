@@ -1,0 +1,234 @@
+/* ─── Reset & Root ────────────────────────────────────────────── */
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #050816;
+  color: #f8fafc;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #app { width: 100%; height: 100%; margin: 0; overflow: hidden; touch-action: none; overscroll-behavior: none; }
+canvas { display: block; }
+#ui-root { pointer-events: none; }
+
+/* ─── Debug Panel ─────────────────────────────────────────────── */
+.debug-panel {
+  pointer-events: auto;
+  position: fixed;
+  top: 12px; left: 12px;
+  width: min(440px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
+  overflow: auto;
+  border: 1px solid rgba(148,163,184,.32);
+  background: rgba(2,6,23,.82);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+.debug-panel h1 { margin: 0 0 2px; font-size: 15px; line-height: 1.2; }
+.debug-panel .subtitle { margin: 0 0 10px; color: #64748b; font-size: 11px; }
+.debug-panel p { margin: 6px 0; color: #cbd5e1; font-size: 12px; line-height: 1.45; }
+
+/* Hide during AR unless force-opened */
+.debug-panel.is-hidden-in-ar { display: none; }
+
+/* ─── Status Grid ─────────────────────────────────────────────── */
+.status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 8px 0;
+}
+.status-card {
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: 10px;
+  padding: 8px;
+  background: rgba(15,23,42,.72);
+}
+.status-card span { display: block; font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: .06em; }
+.status-card strong { display: block; margin-top: 2px; font-size: 12px; color: #f8fafc; }
+.status-grid.compact .status-card strong { font-size: 11px; }
+
+/* ─── Buttons ─────────────────────────────────────────────────── */
+.button-row, .control-grid { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.control-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+.resize-row { grid-template-columns: repeat(4,1fr); }
+.preset-row { display: flex; flex-wrap: wrap; gap: 5px; margin: 6px 0; }
+
+button {
+  appearance: none;
+  border: 1px solid rgba(125,211,252,.35);
+  background: rgba(14,165,233,.17);
+  color: #e0f2fe;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 11.5px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background .12s;
+}
+button:hover:not(:disabled) { background: rgba(14,165,233,.32); }
+button:disabled { opacity: .4; cursor: not-allowed; }
+button.danger  { border-color: rgba(248,113,113,.45); background: rgba(239,68,68,.17); color: #fecaca; }
+button.secondary { border-color: rgba(148,163,184,.35); background: rgba(100,116,139,.17); color: #e2e8f0; }
+button.preset-btn { padding: 5px 8px; font-size: 10.5px; }
+
+/* ─── Progress Bar ────────────────────────────────────────────── */
+.progress-bar {
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(148,163,184,.2);
+  overflow: hidden;
+  margin: 4px 0;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 99px;
+  transition: width .2s;
+}
+.story-progress { height: 5px; margin: 6px 0; }
+
+/* ─── Compat / Onboarding / Info Blocks ──────────────────────── */
+.compat-warning, .cam-fallback-info {
+  display: grid;
+  gap: 5px;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 11.5px;
+}
+.compat-warning { border: 1px solid rgba(251,191,36,.38); background: rgba(180,83,9,.18); color: #fde68a; }
+.compat-warning strong { font-size: 12px; }
+.compat-warning span, .compat-warning .note { color: #fde68a; font-size: 11px; }
+.cam-fallback-info { border: 1px solid rgba(52,211,153,.3); background: rgba(5,150,105,.15); color: #6ee7b7; }
+.cam-fallback-info strong { font-size: 12px; }
+.cam-fallback-info span { font-size: 11px; color: #a7f3d0; }
+
+.ar-panel-warning {
+  display: grid; gap: 5px; margin: 8px 0; padding: 10px;
+  border-radius: 12px; border: 1px solid rgba(251,191,36,.38);
+  background: rgba(180,83,9,.18); color: #fde68a;
+}
+.ar-panel-warning strong { font-size: 12px; }
+.ar-panel-warning span { font-size: 11px; color: #fde68a; }
+
+.onboarding-card {
+  margin: 8px 0; padding: 10px;
+  border: 1px solid rgba(125,211,252,.25);
+  border-radius: 12px;
+  background: rgba(8,47,73,.3);
+  font-size: 11.5px;
+  color: #bae6fd;
+}
+.onboarding-card strong { display: block; margin-bottom: 4px; color: #e0f2fe; }
+.onboarding-card ol { margin: 0; padding-left: 18px; }
+.onboarding-card li { margin: 3px 0; line-height: 1.4; }
+
+.warning-note {
+  margin: 6px 0 0; padding: 7px 10px;
+  border: 1px solid rgba(251,191,36,.35);
+  border-radius: 10px;
+  background: rgba(180,83,9,.16);
+  color: #fde68a !important;
+  font-size: 11px;
+}
+.meta-note { color: #64748b; font-size: 10.5px; margin: 4px 0; }
+
+/* ─── Phase 4 Panel ───────────────────────────────────────────── */
+.phase4-panel {
+  margin: 10px 0; padding: 10px;
+  border: 1px solid rgba(125,211,252,.22);
+  border-radius: 12px;
+  background: rgba(8,47,73,.22);
+}
+.phase4-panel h2 { margin: 0 0 6px; font-size: 13px; color: #bae6fd; }
+
+.char-list { display: grid; gap: 4px; margin: 6px 0; }
+.char-row {
+  padding: 7px 9px;
+  border: 1px solid rgba(148,163,184,.18);
+  border-radius: 9px;
+  background: rgba(15,23,42,.5);
+  display: grid;
+  gap: 2px;
+}
+.char-row.char-error { border-color: rgba(248,113,113,.3); }
+.char-name { font-size: 12px; font-weight: 650; color: #e2e8f0; }
+.char-meta { font-size: 10.5px; color: #94a3b8; }
+.char-err-msg { font-size: 10px; color: #f87171; }
+
+/* ─── Section Details ─────────────────────────────────────────── */
+.section-details { margin: 8px 0; }
+.section-details > summary { cursor: pointer; color: #94a3b8; font-size: 11.5px; font-weight: 650; }
+.section-details > summary:hover { color: #cbd5e1; }
+
+/* ─── JSON Boxes ──────────────────────────────────────────────── */
+.json-details { margin-top: 6px; }
+.json-details summary { cursor: pointer; color: #64748b; font-size: 11px; font-weight: 650; }
+.json-details summary:hover { color: #94a3b8; }
+.json-box {
+  width: 100%; min-height: 140px; max-height: 240px;
+  overflow: auto; margin: 8px 0 0;
+  padding: 10px; border-radius: 10px;
+  border: 1px solid rgba(148,163,184,.2);
+  background: rgba(15,23,42,.88);
+  color: #bbf7d0; font-size: 9.5px; line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+/* ─── AR HUD ──────────────────────────────────────────────────── */
+.ar-hud {
+  pointer-events: auto;
+  position: fixed;
+  left: 50%; bottom: 80px;
+  transform: translateX(-50%);
+  width: min(520px, calc(100vw - 24px));
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid rgba(148,163,184,.3);
+  border-radius: 999px;
+  background: rgba(2,6,23,.76);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+}
+.ar-hud.is-visible { display: flex; }
+.ar-hud__text { min-width: 0; display: grid; gap: 2px; }
+.ar-hud__text strong { font-size: 11.5px; color: #f8fafc; }
+.ar-hud__text span {
+  max-width: 240px; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+  font-size: 10px; color: #cbd5e1;
+}
+.ar-hud__actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.ar-hud button { padding: 8px 11px; border-radius: 999px; font-size: 12px; }
+
+/* ─── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .debug-panel { top: 8px; left: 8px; width: calc(100vw - 16px); padding: 10px; }
+  .control-grid { grid-template-columns: repeat(2,1fr); }
+  .ar-hud { bottom: 72px; border-radius: 16px; }
+  .ar-hud__text span { max-width: 140px; }
+}
+
+/* ─── AR Button (Three.js default — override for consistency) ─── */
+#ar-start-button {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  padding: 12px 28px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  border-radius: 999px !important;
+  border: 1.5px solid rgba(56,189,248,.6) !important;
+  background: rgba(14,165,233,.22) !important;
+  color: #e0f2fe !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4) !important;
+  z-index: 9999 !important;
+}

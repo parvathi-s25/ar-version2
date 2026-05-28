@@ -1,0 +1,19 @@
+{
+  "name": "ar-storytelling-option-a-webxr-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Option A MVP: WebXR-first AR page anchor, hit-test plane placement, page-local coordinates, and boundary clamp for AR storytelling.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "dev:https": "vite --host 0.0.0.0 --https",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-basic-ssl": "latest",
+    "vite": "latest",
+    "three": "latest"
+  },
+  "devDependencies": {}
+}
